@@ -9,7 +9,7 @@ systemd-firstboot \
     --locale=C.UTF-8 \
     --keymap=us \
     --hostname=fred \
-    --timezone="Europe/London"
+    --timezone="Europe/London" \
     --setup-machine-id
 
 exit 0
