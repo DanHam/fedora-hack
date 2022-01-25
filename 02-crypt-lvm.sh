@@ -24,7 +24,7 @@ pvcreate /dev/mapper/sda3_cryptlvm
 # Create Volume Group
 vgcreate cryptvg /dev/mapper/sda3_cryptlvm
 
-# Create the Logical Volumes - Specific to MacMini & Samsung SSD 870
-# lvcreate -L 16G cryptvg -n root
-# lvcreate -L 882.74G cryptvg -n home
-# lvcreate -l +100%FREE cryptvg -n swap
+# Create the Logical Volumes - Specific to hack test
+lvcreate -L 16G cryptvg -n root
+lvcreate -L 29.23G cryptvg -n home
+lvcreate -l +100%FREE cryptvg -n swap
