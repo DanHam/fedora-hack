@@ -25,7 +25,7 @@ printf "%s" "\
     n # Create a new partition for the boot filesystem
         1       # Partition number 1
                 # Accept default first sector
-        +256MiB # Set the partition size
+        +512MiB # Set the partition size
     n # Create a new EFI system partition
         2       # Partition number 2
                 # Accept default first sector
