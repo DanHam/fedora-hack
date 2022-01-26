@@ -10,21 +10,21 @@ cryptsetup luksFormat --type luks2 /dev/sda3
 cryptsetup config --label='CRYPTLVM' /dev/sda3
 
 # Open the disk and set the name for the encypted device under /dev/mapper/
-cryptsetup open /dev/sda3 sda3_cryptlvm
+cryptsetup open /dev/sda3 cryptpv
 
 # Permanently enable trim/discard support for SSD's
-cryptsetup --allow-discards --persistent refresh sda3_cryptlvm
+cryptsetup --allow-discards --persistent refresh cryptpv
 
 # Confirm
 dmsetup table | grep allow_discards
 
 # Set encrypted device as LVM physical volume
-pvcreate /dev/mapper/sda3_cryptlvm
+pvcreate /dev/mapper/cryptpv
 
 # Create Volume Group
-vgcreate cryptvg /dev/mapper/sda3_cryptlvm
+vgcreate cryptvg /dev/mapper/cryptpv
 
 # Create the Logical Volumes - Specific to hack test
-lvcreate -L 16G cryptvg -n root
-lvcreate -L 29.23G cryptvg -n home
+lvcreate -L 16GiB cryptvg -n root
+lvcreate -L 28.98GiB cryptvg -n home
 lvcreate -l +100%FREE cryptvg -n swap
