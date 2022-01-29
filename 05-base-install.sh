@@ -7,9 +7,7 @@ dnf install \
     --installroot=/root/target \
     --releasever=35 \
     --setopt=install_weak_deps=False \
-    --setopt=keepcache=True \
     --assumeyes \
-    --nodocs \
     NetworkManager \
     audit \
     deltarpm \
@@ -21,6 +19,8 @@ dnf install \
     kdb \
     less \
     lz4 \
+    man \
+    man-pages \
     passwd \
     policycoreutils \
     rootfiles \
