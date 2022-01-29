@@ -7,7 +7,7 @@ modprobe dm_crypt
 cryptsetup luksFormat --type luks2 /dev/sda3
 
 # Set a meaningful label on the partition/container
-cryptsetup config --label='CRYPTLVM' /dev/sda3
+cryptsetup config --label='LUKS' /dev/sda3
 
 # Open the disk and set the name for the encypted device under /dev/mapper/
 cryptsetup open /dev/sda3 cryptpv
