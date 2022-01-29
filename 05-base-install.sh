@@ -32,3 +32,5 @@ dnf install \
     systemd-udev \
     vim-minimal \
     zchunk
+
+exit 0
