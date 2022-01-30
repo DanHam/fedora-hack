@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
 #
-# Mount target volumes
-[ ! -d /root/target ] && mkdir -p /root/target
-mount /dev/cryptvg/root /root/target
+# Mount target volumes and prepare target
+set -o errexit
 
-[ ! -d /root/target/boot ] && mkdir /root/target/boot
-mount /dev/sda1 /root/target/boot
+target="/root/target"
 
-[ ! -d /root/target/boot/efi ] && mkdir /root/target/boot/efi
-mount /dev/sda2 /root/target/boot/efi
+[ ! -d "${target}" ] && mkdir -p "${target}"
+mount /dev/cryptvg/root "${target}"
 
-[ ! -d /root/target/home ] && mkdir /root/target/home
-mount /dev/cryptvg/home /root/target/home
+[ ! -d "${target}/boot" ] && mkdir "${target}/boot"
+mount /dev/sda1 "${target}/boot"
+
+[ ! -d "${target}/boot/efi" ] && mkdir "${target}/boot/efi"
+mount /dev/sda2 "${target}/boot/efi"
+
+[ ! -d "${target}/home" ] && mkdir "${target}/home"
+mount /dev/cryptvg/home "${target}/home"
+
+# Prepare the target environment
+mount --bind /dev "${target}/dev"      # Populate the /dev tree
+mount -t proc procfs "${target}/proc"  # Create a proc filesystem
+mount -t sysfs sysfs "${target}/sys"   # Create a sysfs filesystem
+
+exit 0
